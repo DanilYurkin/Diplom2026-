@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Вход{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>Вход</h2>
+<form method="POST" class="registration-form">
+    <label>Логин:<br><input type="text" name="username" required></label><br><br>
+    <label>Пароль:<br><input type="password" name="password" required></label><br><br>
+    <button type="submit" class="btn-buy">Войти</button>
+</form>
+<p style="margin-top: 20px;">Нет аккаунта? <a href="/register">Зарегистрироваться</a></p>
+{% endblock %}

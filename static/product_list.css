@@ -1,0 +1,321 @@
+/* product_list.css */
+
+/* --- Общие стили --- */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #3a3f47;
+  line-height: 1.6;
+}
+
+/* --- Хедер --- */
+header {
+  background-color: #4a4f57;
+  color: #d0d6db;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #aeb6c1;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: #c1c7cd;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  background-color: #5a5f66;
+  color: #f0f4f8;
+}
+
+/* --- Основной контент --- */
+main {
+  max-width: 1100px;
+  margin: 30px auto 60px;
+  padding: 0 20px;
+}
+
+main h2 {
+  font-size: 2.6rem;
+  margin-bottom: 25px;
+  color: #2d333b;
+  border-bottom: 3px solid #8a8f97;
+  padding-bottom: 10px;
+  font-weight: 700;
+}
+
+/* --- Список продуктов --- */
+#Ozon_products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 30px;
+}
+
+/* Один продукт */
+.product {
+  background-color: #e7ebef;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.08);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.product:hover,
+.product:focus-within {
+  box-shadow: 0 4px 15px rgb(0 0 0 / 0.15);
+}
+
+/* Изображение продукта */
+.product-img {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 7px rgb(0 0 0 / 0.15);
+  margin-bottom: 15px;
+  object-fit: contain;
+}
+
+/* Название продукта */
+.product h2 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: #394048;
+}
+
+.product h2 a {
+  text-decoration: none;
+  color: #394048;
+  transition: color 0.3s ease;
+}
+
+.product h2 a:hover,
+.product h2 a:focus {
+  color: #2a3037;
+  text-decoration: underline;
+}
+
+/* Блок цены */
+.price-block {
+  margin-bottom: 15px;
+}
+
+.btb-price {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2f353c;
+}
+
+.error-price {
+  color: #bf4a4a;
+  font-weight: 600;
+}
+
+/* Форма покупки: кнопки и поле ввода */
+.purchase-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.purchase-form button {
+  background-color: #5a626d;
+  border: none;
+  color: #e1e7ec;
+  font-weight: 700;
+  font-size: 1.2rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.purchase-form button:hover,
+.purchase-form button:focus {
+  background-color: #3d454d;
+  outline: none;
+}
+
+.quantity-input {
+  width: 60px;
+  padding: 6px 8px;
+  font-size: 1rem;
+  border: 1.5px solid #8a8f97;
+  border-radius: 6px;
+  text-align: center;
+  color: #3a3f47;
+  transition: border-color 0.3s ease;
+}
+
+.quantity-input:focus {
+  border-color: #5a626d;
+  outline: none;
+}
+
+/* Остатки на складах */
+.product-stocks {
+  font-size: 0.95rem;
+  color: #4f555c;
+  text-align: left;
+  width: 100%;
+}
+
+.product-stocks p {
+  margin: 2px 0;
+}
+
+/* --- Адаптив --- */
+@media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  #Ozon_products {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #Ozon_products {
+    grid-template-columns: 1fr;
+  }
+
+  .purchase-form {
+    gap: 6px;
+  }
+
+  .quantity-input {
+    width: 50px;
+  }
+}
+.purchase-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  overflow: visible; /* Чтобы кнопки не обрезались */
+}
+
+.purchase-form button.btn-buy {
+  min-width: 140px; /* Ширина для кнопки "Добавить в корзину" */
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.purchase-form button:hover,
+.btn-buy:hover {
+  background-color: #444;
+}
+
+.quantity-input {
+  width: 50px;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+.purchase-form button {
+  white-space: nowrap;
+  padding: 6px 10px; /* Уменьшенный горизонтальный padding для + и - */
+  font-size: 16px;
+  border: none;
+  background-color: #666;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 32px; /* Узкая ширина для кнопок + и - */
+  height: 36px;
+  box-sizing: border-box;
+  margin: 0;
+}
+/* Стиль кнопки перехода в магазин для BTC */
+.btn-btc-shop {
+    display: inline-block;
+    background-color: #0077ff;   /* Синий цвет, как у Ozon */
+    color: white;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    text-align: center;
+}
+
+.btn-btc-shop:hover {
+    background-color: #005fcc;   /* Темнее при наведении */
+    text-decoration: none;
+    transform: scale(1.02);
+}
+
+.btn-btc-shop:active {
+    transform: scale(0.98);
+}
+
+/* Стили для цен BTC */
+.btc-discount-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-right: 12px;
+}
+
+.btc-original-price {
+    font-size: 1rem;
+    color: #7f8c8d;
+    text-decoration: line-through;
+}
+
+/* Для сообщения об отсутствии BTB-цены */
+.error-price {
+    color: #c0392b;
+    font-weight: 600;
+    font-style: italic;
+    background: #ffe6e6;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.price-notice {
+    font-size: 0.85rem;
+    color: #5a626d;
+    margin-left: 8px;
+}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='cart.css') }}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='cart.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('payment-modal');
+    if (modal) {
+        const closeBtn = modal.querySelector('.close');
+        if (closeBtn) closeBtn.addEventListener('click', () => modal.style.display = 'none');
+        window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+    }
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="cart-container">
+    <h2>{{ title }}</h2>
+    <div id="cart-items">
+        {% for category, products in cart.items() if products %}
+        <h3>{{ "BTC товары" if category == "btc" else "BTB товары" }}</h3>
+        {% for product_id, item in products.items() %}
+        <div class="cart-item" id="cart-item-{{ product_id }}">
+            <img src="{{ item.product_info.images[0] if item.product_info.images else '/static/no_image.png' }}"
+                 alt="{{ item.product_info.name }}" class="cart-item-img">
+            <div class="cart-item-info">
+                <h4>{{ item.product_info.name }}</h4>
+                <p>Цена за шт.: {{ item.product_info.price }} {{ item.product_info.currency_code }}</p>
+                <div class="cart-item-controls">
+                    <input type="number" id="quantity-{{ product_id }}" class="quantity-input"
+                           value="{{ item.quantity }}" min="1"
+                           onchange="updateCartItem('{{ category }}', '{{ product_id }}', this.value)">
+                    <button onclick="removeCartItem('{{ category }}', '{{ product_id }}')">Удалить</button>
+                </div>
+                <p>Сумма: {{ item.product_info.price * item.quantity }} {{ item.product_info.currency_code }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>Ваша корзина пуста</p>
+        {% endfor %}
+
+        {% if cart.btc or cart.btb %}
+        <div class="cart-total">
+            <h3>Итого: {{ calculate_total(cart) }} RUB</h3>
+            <button class="btn-checkout">Оформить заказ</button>
+        </div>
+        {% endif %}
+    </div>
+
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Оплата через СБП</h3>
+            <div class="sbp-instructions">
+                <p>Используйте данные ниже для ручного перевода:</p>
+                <div class="sbp-details">
+                    <p><strong>Банк:</strong> Тинькофф</p>
+                    <p><strong>Счет:</strong> 40817810427007193144</p>
+                    <p><strong>БИК:</strong> 043304609</p>
+                    <p><strong>Получатель:</strong> ООО "OMB"</p>
+                    <p><strong>ИНН:</strong> 7707083893</p>
+                    <p><strong>Сумма:</strong> <span id="sbp-amount"></span></p>
+                    <p><strong>Назначение:</strong> Оплата заказа #<span id="sbp-order-id"></span></p>
+                </div>
+            </div>
+            <div id="qr-container"></div>
+            <p class="sbp-note">Или отсканируйте QR-код через приложение банка</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Личный кабинет{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='account.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="account-container">
+    {% if logged_in %}
+        <h2>Добро пожаловать, {{ user[3] }}!</h2>
+        <p><strong>ФИО:</strong> {{ user[0] }}</p>
+        <p><strong>Телефон:</strong> {{ user[1] }}</p>
+        <p><strong>Адрес:</strong> {{ user[2] }}</p>
+        <p><strong>Логин:</strong> {{ user[3] }}</p>
+
+        {% if session.get('is_admin') %}
+            <a href="/admin/products" class="btn-buy">Управление ценами BTB</a>
+            <a href="/register-admin" class="btn-buy">Зарегистрировать администратора</a>
+        {% endif %}
+
+        <a href="/edit-profile" class="btn-buy">Изменить данные</a>
+        <a href="/logout" class="btn-close">Выйти</a>
+    {% else %}
+        <h2>Личный кабинет</h2>
+        <button onclick="window.location.href='/login'">Войти</button>
+        <button onclick="window.location.href='/register'">Регистрация</button>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}О компании АлПрофи{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2 class="page-title">О компании АлПрофи</h2>
+<div class="about-content">
+    <section class="about-section">
+        <div class="about-image">
+            <img src="/static/about1.jpg" alt="Наша команда">
+        </div>
+        <div class="about-text">
+            <h3>Наша история</h3>
+            <p>Компания АлПрофи — 7 лет на рынке оконных решений. Мы начали с установки и обслуживания окон ПВХ в частных домах и офисах, заслужив доверие сотен клиентов. С 2025 года мы вышли на маркетплейсы, предлагая качественные товары для окон, которые раньше можно было купить только у нас на складе.</p>
+        </div>
+    </section>
+
+    <section class="about-section reverse">
+        <div class="about-image">
+            <img src="/static/about2.jpg" alt="Производство">
+        </div>
+        <div class="about-text">
+            <h3>Наша специализация</h3>
+            <p>Мы работаем напрямую с отечественными производителями, отбирая лучшие материалы и фурнитуру для окон. Производство — полностью российское, что гарантирует короткие сроки поставки и доступные цены.</p>
+        </div>
+    </section>
+
+    <section class="advantages">
+        <h3>Наши преимущества</h3>
+        <p>7 лет опыта, собственное производство, прямая работа с заводами. Мы знаем окна от А до Я и предлагаем только проверенные товары.</p>
+        <div class="advantages-grid">
+            <div class="advantage-card">
+                <h4>Отечественное производство</h4>
+                <p>Товары от российских заводов, сертифицированы и адаптированы к нашему климату</p>
+            </div>
+            <div class="advantage-card">
+                <h4>Прямые поставки</h4>
+                <p>Работаем без посредников — вы получаете лучшую цену</p>
+            </div>
+            <div class="advantage-card">
+                <h4>Гарантия качества</h4>
+                <p>Более 5000 довольных клиентов за 7 лет работы</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission">
+        <h3>Наша миссия</h3>
+        <p>Сделать окна комфортными, тёплыми и долговечными. Мы помогаем нашим клиентам поддерживать окна в идеальном состоянии, предлагая надёжные материалы и профессиональные консультации.</p>
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">7 лет</div>
+                <div class="stat-label">на рынке</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">поддержка клиентов</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h3>Готовы к сотрудничеству?</h3>
+        <p>Выбирайте товары в каталоге или свяжитесь с нами для оптовых заказов!</p>
+        <div class="cta-buttons">
+            <a href="/btc" class="cta-button">Каталог BTC</a>
+            <a href="/btb" class="cta-button">Каталог BTB</a>
+            <a href="#contact" class="cta-button secondary">Связаться с нами</a>
+        </div>
+    </section>
+</div>
+{% endblock %}

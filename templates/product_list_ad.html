@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}Управление ценами BTB{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='product_list_ad.css') }}">
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Индивидуальное обновление
+async function updateBtbPrice(productId) {
+    const price = document.getElementById(`btb-price-${productId}`).value;
+    if (!price) return;
+    await fetch('/api/btb_price/update', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ product_id: productId, price: price })
+    });
+    location.reload();
+}
+
+async function resetBtbPrice(productId) {
+    await fetch(`/api/btb_price/delete/${productId}`, { method: 'DELETE' });
+    location.reload();
+}
+
+// Массовое сохранение всех введённых BTB-цен
+async function saveAllPrices() {
+    const inputs = document.querySelectorAll('.btb-price-input');
+    const updates = [];
+    inputs.forEach(input => {
+        const productId = input.getAttribute('data-product-id');
+        const price = input.value.trim();
+        if (price !== '') {
+            updates.push({
+                product_id: parseInt(productId),
+                price: parseFloat(price)
+            });
+        }
+    });
+    if (updates.length === 0) {
+        alert('Нет заполненных полей для обновления.');
+        return;
+    }
+    if (!confirm(`Сохранить BTB-цены для ${updates.length} товаров?`)) return;
+    try {
+        const response = await fetch('/api/btb_price/bulk_update_all', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ updates: updates })
+        });
+        const result = await response.json();
+        if (result.status === 'success') {
+            alert(result.message);
+            location.reload();
+        } else {
+            alert('Ошибка: ' + result.message);
+        }
+    } catch (error) {
+        alert('Ошибка сети: ' + error.message);
+    }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<h2>Управление ценами BTB</h2>
+
+<div class="admin-products">
+    {% for product in products %}
+    <div class="admin-product">
+        <h3>{{ product.name }}</h3>
+        <!-- Исправлено: теперь всегда показывается оригинальная цена Ozon -->
+        <p>Ozon цена: {{ product.ozon_price }} RUB</p>
+        <div class="price-control">
+            <input type="number"
+                   value="{{ product.btb_price or '' }}"
+                   placeholder="BTB цена"
+                   class="btb-price-input"
+                   data-product-id="{{ product.product_id }}"
+                   id="btb-price-{{ product.product_id }}">
+            <button onclick="updateBtbPrice({{ product.product_id }})">Обновить</button>
+            {% if product.btb_price %}
+                <button onclick="resetBtbPrice({{ product.product_id }})">Сбросить</button>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Одна кнопка внизу страницы -->
+<div style="text-align: center; margin-top: 30px;">
+    <button onclick="saveAllPrices()"
+            style="background-color: #28a745; color: white; border: none; padding: 12px 30px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 16px;">
+        💾 Сохранить все изменённые BTB-цены
+    </button>
+</div>
+{% endblock %}

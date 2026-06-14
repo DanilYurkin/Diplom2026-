@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Регистрация администратора{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='register_admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>Регистрация нового администратора</h2>
+<form method="POST" class="registration-form">
+    <label>ФИО:<br><input type="text" name="full_name" required></label><br><br>
+    <label>Телефон:<br><input type="number" name="phone" required></label><br><br>
+    <label>Адрес:<br><input type="text" name="address" required></label><br><br>
+    <label>Логин:<br><input type="text" name="username" required></label><br><br>
+    <label>Пароль:<br><input type="password" name="password" required></label><br><br>
+    <button type="submit" class="btn-buy">Создать администратора</button>
+    <a href="/account" class="btn-close">Назад</a>
+</form>
+{% endblock %}

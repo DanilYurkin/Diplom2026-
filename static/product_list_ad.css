@@ -1,0 +1,166 @@
+/* Общие стили страницы */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fafafa;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Хедер */
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px 25px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Навигация */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 10px 0 0 0;
+  margin: 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background-color: #555;
+}
+
+/* Основной блок */
+main {
+  flex-grow: 1;
+  max-width: 900px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px 25px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+/* Заголовок */
+main h2 {
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #222;
+  text-align: center;
+}
+
+/* Контейнер с товарами */
+.admin-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+/* Карточка товара */
+.admin-product {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px;
+  width: 280px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Название товара */
+.admin-product h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #333;
+}
+
+/* Цена Ozon */
+.admin-product p {
+  margin: 6px 0 18px 0;
+  color: #666;
+  font-weight: 600;
+}
+
+/* Контролы цены */
+.price-control {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Инпут цены */
+.price-control input[type="number"] {
+  flex-grow: 1;
+  padding: 8px 12px;
+  font-size: 15px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+  min-width: 120px;
+  box-sizing: border-box;
+}
+
+.price-control input[type="number"]:focus {
+  outline: none;
+  border-color: #444;
+}
+
+/* Кнопки */
+.price-control button {
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 9px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 110px;
+  box-sizing: border-box;
+}
+
+.price-control button:hover {
+  background-color: #222;
+}
+
+/* Кнопка "Вернуть цену" (светло-серая) */
+.price-control button.btn-reset {
+  background-color: #888;
+}
+
+.price-control button.btn-reset:hover {
+  background-color: #666;
+}
+
+/* Адаптив */
+@media (max-width: 640px) {
+  .admin-products {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .admin-product {
+    width: 90%;
+  }
+}

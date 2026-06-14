@@ -1,0 +1,72 @@
+/* account.css — только для личного кабинета */
+
+.account-container {
+  max-width: 480px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.account-container h2 {
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #222;
+}
+
+.account-container p {
+  font-size: 16px;
+  color: #444;
+  margin: 8px 0;
+  text-align: left;
+}
+
+.btn-buy, .btn-close, .account-container button {
+  display: inline-block;
+  background-color: #444444;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  margin: 12px 8px 0 8px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  user-select: none;
+  min-width: 140px;
+  box-sizing: border-box;
+}
+
+.btn-buy:hover, .btn-close:hover, .account-container button:hover {
+  background-color: #222222;
+}
+
+.btn-close {
+  background-color: #c0392b;
+  margin-left: 0;
+}
+
+.btn-close:hover {
+  background-color: #922b21;
+}
+
+.account-container button {
+  min-width: 120px;
+}
+
+@media (max-width: 520px) {
+  .account-container {
+    margin: 20px 15px;
+    padding: 25px 20px;
+  }
+  .btn-buy, .btn-close {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+}

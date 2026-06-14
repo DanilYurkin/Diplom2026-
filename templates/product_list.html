@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='product_list.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+<div id="Ozon_products">
+    {% for product in products %}
+    <div class="product">
+        <img src="{{ product.images[0] if product.images else '/static/no_image.png' }}" alt="Фото товара" class="product-img">
+        <h2><a href="/product/{{ product.product_id }}">{{ product.name }}</a></h2>
+
+        <div class="price-block">
+            {% if category == 'btc' %}
+                <span class="btc-discount-price">{{ product.ozon_price }} {{ product.currency_code }}</span>
+                {% if product.old_price and product.old_price > product.ozon_price %}
+                    <span class="btc-original-price">{{ product.old_price }} {{ product.currency_code }}</span>
+                {% endif %}
+            {% else %}
+                {% if product.btb_price %}
+                    <span class="btb-price">{{ product.btb_price }} {{ product.currency_code }}</span>
+                    <span class="price-notice">(Минимальная цена Ozon: {{ product.ozon_price }})</span>
+                {% else %}
+                    <span class="error-price">Цена пока не установлена</span>
+                    <span class="price-notice">(Минимальная цена Ozon: {{ product.ozon_price }})</span>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        {% if category == 'btc' %}
+            <div class="purchase-form">
+                <a href="https://www.ozon.ru/seller/2403648/" target="_blank" class="btn-buy btn-btc-shop">Перейти в магазин на Ozon →</a>
+            </div>
+        {% else %}
+            {% if product.btb_price %}
+                <div class="purchase-form">
+                    <button onclick="decrementQuantity({{ product.product_id }})">-</button>
+                    <input type="number" id="quantity-{{ product.product_id }}" min="0" value="0" class="quantity-input">
+                    <button onclick="incrementQuantity({{ product.product_id }})">+</button>
+                    <button onclick="addToCart({{ product.product_id }}, 'btb')" class="btn-buy">Добавить</button>
+                </div>
+            {% else %}
+                <!-- форма не выводится -->
+            {% endif %}
+        {% endif %}
+
+        {% if category == 'btc' %}
+            <div class="product-stocks">
+                <p><strong>Остатки на складах:</strong></p>
+                {% for stock in product.stocks %}
+                    <p>{{ stock.split(':')[0] }}: {{ stock.split(':')[1] }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

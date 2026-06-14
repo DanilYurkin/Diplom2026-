@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Заказ #{{ order_id }}{% endblock %}
+
+{% block content %}
+<h1>Заказ #{{ order_id }}</h1>
+<p>Статус: {{ payment_status }}</p>
+<p>Дата: {{ created_at }}</p>
+
+<section class="order-items">
+    <h2>Состав заказа:</h2>
+    {% if order_data.items %}
+        <table>
+            <thead>
+                <tr><th>Товар</th><th>Цена</th><th>Кол-во</th><th>Сумма</th></tr>
+            </thead>
+            <tbody>
+                {% for item in order_data.items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }} ₽</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.sum }} ₽</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr><td colspan="3"><strong>Итого:</strong></td>
+                    <td><strong>{{ order_data.total }} ₽</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+    {% else %}
+        <p>Нет товаров в заказе.</p>
+    {% endif %}
+</section>
+
+{% if qr_url %}
+<section class="qr-payment">
+    <h2>Оплата по QR-коду</h2>
+    <div class="qr-container">
+        <img src="{{ qr_url }}" alt="QR-код для оплаты" id="qr-image"
+             onerror="this.onerror=null; this.src='/static/no_qr.png';">
+        <p class="qr-instruction">Отсканируйте код через мобильное приложение банка</p>
+    </div>
+</section>
+{% else %}
+<p class="no-qr">QR-код для оплаты еще не сгенерирован</p>
+{% endif %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var qrImg = document.getElementById('qr-image');
+    if (qrImg && qrImg.complete && qrImg.naturalWidth === 0) {
+        qrImg.src = '/static/no_qr.png';
+    }
+});
+</script>
+{% endblock %}

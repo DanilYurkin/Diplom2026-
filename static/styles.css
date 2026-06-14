@@ -1,0 +1,175 @@
+/* styles.css — глобальные стили для всего сайта */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f6f7;
+  color: #3a3f4b;
+  line-height: 1.6;
+}
+
+/* Хедер и меню */
+.site-header {
+  background-color: #4a4f57;
+  color: #e0e0e0;
+  padding: 15px 0;
+  box-shadow: 0 2px 8px rgba(74, 79, 87, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  text-decoration: none;
+  letter-spacing: 2px;
+  user-select: none;
+}
+
+.logo a:hover {
+  color: #aeb3bb;
+}
+
+.main-nav ul.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav ul.nav-list li a {
+  color: #c1c4ca;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.main-nav ul.nav-list li a:hover,
+.main-nav ul.nav-list li a.active {
+  background-color: #6c7381;
+  color: white;
+}
+
+/* Основной контент для страниц, у которых нет собственного main */
+main {
+  max-width: 1100px;
+  margin: 40px auto 80px auto;
+  padding: 0 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(74, 79, 87, 0.1);
+}
+
+h2.page-title {
+  font-size: 2rem;
+  color: #4a4f57;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Футер */
+footer {
+  background-color: #4a4f57;
+  color: #c1c4ca;
+  padding: 25px 20px;
+  margin-top: 60px;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto 10px auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-section h4 {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  color: #e0e0e0;
+}
+
+.footer-section p {
+  font-size: 1rem;
+  color: #d1d3d8;
+  line-height: 1.4;
+}
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #aeb3bb;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .header-wrap {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .main-nav ul.nav-list {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  .main-nav ul.nav-list li a {
+    display: inline-block;
+    padding: 8px 20px;
+  }
+  main {
+    margin: 20px 15px;
+    padding: 0 15px;
+  }
+  .product-details {
+    flex-direction: column;
+  }
+  .purchase-form {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .cart-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  .cart-item img {
+    margin: 0 auto 10px;
+  }
+  .btn-buy, .btn-close, .cta-button {
+    width: 100%;
+    text-align: center;
+    margin: 6px 0;
+  }
+  .price-block {
+    text-align: center;
+  }
+  .btc-discount-price, .btb-price {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+    padding: 15px;
+  }
+}

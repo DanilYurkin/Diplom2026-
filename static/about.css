@@ -1,0 +1,326 @@
+/* about.css */
+
+/* --- Общие стили страницы --- */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa; /* светло-серый фон */
+  color: #3a3f47; /* темно-серый текст */
+  line-height: 1.6;
+}
+
+/* --- Шапка --- */
+.site-header {
+  background-color: #4a4f57; /* тёмно-серый */
+  color: #d0d6db;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.site-header .logo a {
+  color: #aeb6c1;
+  font-weight: bold;
+  font-size: 26px;
+  text-decoration: none;
+}
+
+.main-nav ul.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav ul.nav-list li a {
+  color: #c1c7cd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.main-nav ul.nav-list li a:hover,
+.main-nav ul.nav-list li a:focus {
+  background-color: #5a5f66;
+  color: #f0f4f8;
+}
+
+/* --- Основной контент --- */
+main {
+  max-width: 1100px;
+  margin: 30px auto 60px;
+  padding: 0 20px;
+}
+
+/* Заголовки */
+.page-title {
+  font-size: 2.8rem;
+  margin-bottom: 25px;
+  color: #2d333b;
+  border-bottom: 3px solid #8a8f97;
+  padding-bottom: 8px;
+  font-weight: 700;
+}
+
+/* Секции about */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* Отдельная секция */
+.about-section {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background-color: #e7ebef;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+}
+
+.about-section.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Картинка в секции */
+.about-image img {
+  width: 380px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 3px 7px rgb(0 0 0 / 0.15);
+}
+
+/* Текст в секции */
+.about-text {
+  flex: 1;
+}
+
+.about-text h3 {
+  font-size: 1.9rem;
+  color: #394048;
+  margin-bottom: 14px;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  color: #50575d;
+  line-height: 1.5;
+}
+
+/* --- Преимущества --- */
+.advantages {
+  background-color: #f0f4f8;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.07);
+}
+
+.advantages h3 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: #3a4149;
+  font-weight: 700;
+}
+
+.advantages p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  color: #4f575f;
+}
+
+/* Сетка преимуществ */
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+  gap: 20px;
+}
+
+.advantage-card {
+  background: #fff;
+  padding: 20px 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 0.08);
+  text-align: center;
+}
+
+.advantage-card h4 {
+  font-size: 1.3rem;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  color: #37424a;
+}
+
+.advantage-card p {
+  font-size: 0.98rem;
+  color: #626c74;
+}
+
+/* --- Миссия --- */
+.mission {
+  background-color: #e1e6eb;
+  border-radius: 12px;
+  padding: 25px 30px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+}
+
+.mission h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+  color: #333a41;
+}
+
+.mission p {
+  font-size: 1.1rem;
+  color: #4a5158;
+  margin-bottom: 25px;
+}
+
+/* Статистика */
+.stats {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2f353c;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: #5c636a;
+}
+
+/* --- Кнопки CTA --- */
+.cta-section {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.cta-section h3 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  color: #2a3037;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: #4f555c;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  background-color: #5a626d;
+  color: #e1e7ec;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 14px 30px;
+  border-radius: 7px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+  background-color: #3d454d;
+  color: #f0f4f8;
+}
+
+.cta-button.secondary {
+  background-color: #a0a8b4;
+  color: #2a3037;
+}
+
+.cta-button.secondary:hover,
+.cta-button.secondary:focus {
+  background-color: #7d8490;
+  color: #f0f4f8;
+}
+
+/* --- Футер --- */
+footer {
+  background-color: #3e444d;
+  color: #c0c5cc;
+  padding: 25px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 15px;
+}
+
+.footer-section h4 {
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #e2e6eb;
+}
+
+.footer-section p {
+  margin: 3px 0;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #8a8f97;
+  border-top: 1px solid #5a5f66;
+  padding-top: 10px;
+}
+
+/* --- Адаптив --- */
+@media (max-width: 900px) {
+  .about-section,
+  .about-section.reverse {
+    flex-direction: column;
+  }
+
+  .about-image img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .stats {
+    gap: 20px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-nav ul.nav-list {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: block;
+    color: #c1c7cd;
+  }
+}

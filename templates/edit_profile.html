@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Изменить профиль{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='edit_profile.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>Редактирование профиля</h2>
+<form method="POST" class="registration-form">
+    <label>ФИО:<br><input type="text" name="full_name" value="{{ user[0] }}" required></label><br><br>
+    <label>Телефон:<br><input type="number" name="phone" value="{{ user[1] }}" required></label><br><br>
+    <label>Адрес:<br><input type="text" name="address" value="{{ user[2] }}" required></label><br><br>
+    <button type="submit" class="btn-buy">Сохранить</button>
+    <a href="/account" class="btn-close">Отмена</a>
+</form>
+{% endblock %}
