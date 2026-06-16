@@ -95,6 +95,27 @@ def init_db():
         )
         ''')
 
+
+        # ===== ДОБАВЛЯЕМ АДМИНИСТРАТОРА ПО УМОЛЧАНИЮ =====
+        # Проверяем, есть ли уже администратор
+        cursor.execute("SELECT COUNT(*) FROM users WHERE is_admin = 1")
+        admin_count = cursor.fetchone()[0]
+        if admin_count == 0:
+            cursor.execute('''
+                INSERT INTO users (full_name, phone, address, username, password, is_admin)
+                VALUES (?, ?, ?, ?, ?, ?)
+            ''', (
+                'Администратор',
+                '+79991234567',
+                'г. Москва, ул. Примерная, д. 1',
+                'admin',
+                'admin123',   # В проде пароль нужно хешировать!
+                1
+            ))
+            print("✅ Создан администратор по умолчанию: логин admin, пароль admin123")
+        else:
+            print("ℹ️ Администратор уже существует, пропускаем создание")
+
         conn.commit()
         print("✅ База данных инициализирована")
 
