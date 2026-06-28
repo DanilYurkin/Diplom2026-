@@ -467,7 +467,7 @@ def delete_btb_price_route(product_id):
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
-
+# Старый маршрут с POST удалён – теперь используется версия с параметром и методом DELETE
 
 @app.route('/edit-profile', methods=['GET', 'POST'])
 def edit_profile():
