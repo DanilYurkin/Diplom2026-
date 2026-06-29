@@ -8,12 +8,28 @@
 
 {% block content %}
 <h2>Регистрация</h2>
+
+{% if error %}
+    <div class="error-message">{{ error }}</div>
+{% endif %}
+
 <form method="POST" class="registration-form">
-    <label>ФИО:<br><input type="text" name="full_name" required></label><br><br>
-    <label>Телефон:<br><input type="number" name="phone" required></label><br><br>
-    <label>Адрес:<br><input type="text" name="address" required></label><br><br>
-    <label>Логин:<br><input type="text" name="username" required></label><br><br>
-    <label>Пароль:<br><input type="password" name="password" required></label><br><br>
+    <label>ФИО:<br><input type="text" name="full_name" required></label>
+    <label>Телефон:<br><input type="number" name="phone" required></label>
+    <label>Адрес:<br><input type="text" name="address" required></label>
+    <label>Логин:<br><input type="text" name="username" required></label>
+    <label>Пароль:<br><input type="password" name="password" required></label>
+
+    <!-- Скрытое поле передаёт согласие на сервер (так как чекбокс заблокирован) -->
+    <input type="hidden" name="agree" value="on">
+    <label class="checkbox-label">
+        <input type="checkbox" checked disabled>
+        Я согласен на обработку
+        <a href="{{ url_for('personal_data') }}" target="_blank" rel="noopener noreferrer">
+            персональных данных
+        </a>
+    </label>
+
     <button type="submit" class="btn-buy">Зарегистрироваться</button>
 </form>
 {% endblock %}
