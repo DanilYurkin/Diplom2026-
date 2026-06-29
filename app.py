@@ -547,5 +547,11 @@ def bulk_update_all_btb_prices():
 def auth_status():
     return jsonify({'logged_in': 'user_id' in session})
 
+@app.route('/personal-data')
+def personal_data():
+    """Страница с текстом Федерального закона № 152-ФЗ «О персональных данных»"""
+    return render_template('personal_data.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
